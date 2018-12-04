@@ -29,10 +29,11 @@ def detect_red(hsv):
     lower = np.array([136, 87, 111])  # 136,87,111
     upper = np.array([179, 255, 255])  # 180,255,255
     mask1 = cv2.inRange(hsv, lower, upper)
-    lower = np.array([0, 110, 100])
-    upper = np.array([3, 255, 255])
+    lower = np.array([0, 0, 80])
+    upper = np.array([3, 0, 255])
     mask2 = cv2.inRange(hsv, lower, upper)
     maskred = mask1 + mask2
+    cv2.imshow("maskred",maskred) 
     maskred = cv2.erode(maskred, kernel_erode, iterations=1)
     maskred = cv2.morphologyEx(maskred,cv2.MORPH_CLOSE,kernel_close)
     return maskred
@@ -169,8 +170,8 @@ while 1:
 
 video.release()
 cv2.destroyAllWindows()
-cv2.putText(frame, str("Game Over!"), (100, 230), font, 3, (255, 0, 0), 3, cv2.LINE_AA)
-cv2.putText(frame, str("Press any key to Exit."), (180, 260), font, 1, (255, 200, 0), 2, cv2.LINE_AA)
-cv2.imshow("frame",frame)
-cv2.waitKey(0)
+#cv2.putText(frame, str("Game Over!"), (100, 230), font, 3, (255, 0, 0), 3, cv2.LINE_AA)
+#cv2.putText(frame, str("Press any key to Exit."), (180, 260), font, 1, (255, 200, 0), 2, cv2.LINE_AA)
+#cv2.imshow("frame",frame)
+#cv2.waitKey(0)
 cv2.destroyAllWindows()
