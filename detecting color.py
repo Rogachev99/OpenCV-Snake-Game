@@ -33,7 +33,7 @@ kernel_erode = np.ones((4, 4), np.uint8)
 kernel_close = np.ones((15, 15), np.uint8)
 
 # function for detecting red color
-def detect_red(hsv):
+def detect_color(hsv):
     hsv = cv2.GaussianBlur(hsv, (15, 15), 2)
     # lower bound for red color hue saturation value
     lower = np.array([136, 87, 111])  # 136,  87,  111
@@ -103,7 +103,7 @@ while 1:
 
     # converting to hsv
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-    maskred = detect_red(hsv)
+    maskred = detect_color(hsv)
     
     # finding contours
     _, contour_red, _ = cv2.findContours(
