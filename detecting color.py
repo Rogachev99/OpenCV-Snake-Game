@@ -28,6 +28,7 @@ kernel_close = np.ones((15,15),np.uint8)
 #for blue [99,115,150] [110,255,255]
 #function for detecting red color
 def detect_red(hsv):
+    hsv = cv2.GaussianBlur(hsv, (15, 15), 2)
     #lower bound for red color hue saturation value
     lower = np.array([136, 87, 111])  # 136,87,111
     upper = np.array([179, 255, 255])  # 180,255,255
