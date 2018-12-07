@@ -72,7 +72,7 @@ q,snake_len,score,temp=0,200,0,1
 # stores the center point of the red blob
 point_x,point_y = 0,0
 # stores the points which satisfy the condition, dist stores dist between 2 consecutive pts, length is len of snake
-last_point_x,last_point_y,dist,length = 0,0,0,0
+last_point_x,last_point_y,dist,length = 30,30,0,0
 # stores all the points of the snake body
 points = []
 # stores the length between all the points
@@ -140,6 +140,12 @@ while 1:
         score +=1
         random_x = random.randint(10, 550)
         random_y = random.randint(10, 400)
+
+    # check out over the borders of the snake
+    #print(last_point_x, ' ', last_point_y)
+    if (last_point_x <= 5 or last_point_x >= 630  or last_point_y <= 5 or last_point_y >= 470):
+        break
+
     #adding blank image to captured frame
     frame = cv2.add(frame,blank_img)
     #adding apple image to frame
