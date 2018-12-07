@@ -144,8 +144,8 @@ while 1:
     for i, j in enumerate(points):
         if (i == 0):
             continue
-        cv2.line(blank_img, (points[i-1][0], points[i-1]
-                             [1]), (j[0], j[1]), (0, 0, 255), 5)
+        cv2.line(blank_img, (points[i-1][0], points[i-1][1]),
+                                (j[0], j[1]), (0, 0, 255), 5)
 
     cv2.circle(blank_img, (last_point_x, last_point_y), 5, (10, 200, 150), -1)
     # if snake eats apple increase score and find new position for apple
