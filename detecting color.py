@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
 import cv2
 import numpy as np
 from time import time
 import random
 import math
+import os
+import sys
 
 #initializing font for puttext
 font = cv2.FONT_HERSHEY_COMPLEX_SMALL
@@ -166,12 +169,14 @@ while 1:
         start_time = int(time())
     key = cv2.waitKey(1)
     if key == 27:
-        break
+        exit(0)
 
 video.release()
 cv2.destroyAllWindows()
-#cv2.putText(frame, str("Game Over!"), (100, 230), font, 3, (255, 0, 0), 3, cv2.LINE_AA)
-#cv2.putText(frame, str("Press any key to Exit."), (180, 260), font, 1, (255, 200, 0), 2, cv2.LINE_AA)
-#cv2.imshow("frame",frame)
-#cv2.waitKey(0)
+cv2.putText(frame, str("Game Over!"), (100, 230), font, 3, (255, 0, 0), 3, cv2.LINE_AA)
+cv2.putText(frame, str("Press any key to Exit."), (180, 260), font, 1, (255, 200, 0), 2, cv2.LINE_AA)
+cv2.imshow("frame",frame)
+cv2.waitKey(0)
 cv2.destroyAllWindows()
+# Run a new iteration of the current script, providing any command line args from the current iteration.
+os.execv(__file__, sys.argv)
