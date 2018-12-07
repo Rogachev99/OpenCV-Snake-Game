@@ -22,6 +22,9 @@ apple_mask     = cv2.resize(apple_mask, (40, 40), interpolation=cv2.INTER_AREA)
 apple_mask_inv = cv2.resize(
     apple_mask_inv, (40, 40), interpolation=cv2.INTER_AREA)
 
+border_size  = 15
+border_color = (255, 25, 25)
+
 # initilizing a black blank image
 blank_img = np.zeros((480, 640, 3), np.uint8)
 
@@ -69,6 +72,13 @@ def intersect(p, q, r, s):
         return True
 
     return False
+
+#480, 640 переделать в формулу
+def paint_border(img):
+    cv2.line(img, (0, 0),   (640, 0),   border_color, border_size)  # top
+    cv2.line(img, (0, 0),   (0, 480),   border_color, border_size)  # left
+    cv2.line(img, (640, 0), (640, 480), border_color, border_size)  # right
+    cv2.line(img, (0, 480), (640, 480), border_color, border_size)  # bottom
 
 # initilizing time (used for increasing the length of snake per second)
 start_time = int(time())
@@ -140,6 +150,8 @@ while 1:
                 break
     # initializing blank black image
     blank_img = np.zeros((480, 640, 3), np.uint8)
+    
+    paint_border(blank_img)
     # drawing the lines between all the points
     for i, j in enumerate(points):
         if (i == 0):
