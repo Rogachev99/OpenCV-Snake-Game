@@ -116,12 +116,12 @@ while 1:
     maskred = detect_color(hsv)
     
     # finding contours
-    _, contour_red, _ = cv2.findContours(
+    _, contour_color, _ = cv2.findContours(
         maskred, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     # drawing rectangle around the accepted blob
     try:
         for i in range(0, 10):
-            xr, yr, wr, hr = cv2.boundingRect(contour_red[i])
+            xr, yr, wr, hr = cv2.boundingRect(contour_color[i])
             if (wr*hr) > 2000:
                 break
     except:
