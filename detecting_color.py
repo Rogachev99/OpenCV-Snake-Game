@@ -108,13 +108,13 @@ def start_game():
         _, contour_color, _ = cv2.findContours(
             maskred, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         # drawing rectangle around the accepted blob
-        try:
-            for i in range(0, 10):
-                xr, yr, wr, hr = cv2.boundingRect(contour_color[i])
-                if (wr*hr) > 2000:
-                    break
-        except:
-            pass
+        #print(len(contour_color) - 1)
+        S = 0 # contour area
+        for contour in contour_color:
+            x, y, w, h = cv2.boundingRect(contour)
+            if (w * h) > S:
+                S = wr * hr
+                xr, yr, wr, hr = x, y, w, h
         cv2.rectangle(frame, (xr, yr), (xr + wr, yr + hr), (0, 0, 255), 2)
         # making snake body
         point_x = int(xr+(wr/2))
